@@ -74,9 +74,14 @@
     .tile-dark-2    { background: #2a2a2c; color: #ffffff; }
     .tile-dark-3    { background: #252527; color: #ffffff; }
 
-    .container-page   { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
-    .container-tile   { max-width: 1024px; margin: 0 auto; padding: 0 24px; }
-    .container-narrow { max-width: 880px;  margin: 0 auto; padding: 0 24px; }
+    .container-page      { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    .container-tile      { max-width: 1024px; margin: 0 auto; padding: 0 24px; }
+    .container-tile-wide { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container-narrow    { max-width: 880px;  margin: 0 auto; padding: 0 24px; }
+
+    /* Lead with forced single line (desktop) — wrap allowed on narrow viewports */
+    .lead-nowrap { white-space: nowrap; max-width: none; }
+    @media (max-width: 880px) { .lead-nowrap { white-space: normal; } }
 
     /* Buttons */
     .btn { display: inline-flex; align-items: center; gap: 6px; transition: transform 180ms cubic-bezier(.4,0,.2,1); }
@@ -327,9 +332,9 @@
 
   <!-- =================== § 1-B 게이트웨이 전환 (PARCHMENT) =================== -->
   <section class="tile tile-parchment">
-    <div class="container-tile">
+    <div class="container-tile-wide">
       <h2 class="ff-display t-display-lg mb-3">검색 게이트웨이가 바뀌었다</h2>
-      <p class="t-lead" style="color:#555;max-width:720px;">"증상 → 검색창 → 클릭" 흐름이 "증상 → AI 챗에게 묻기 → 답변 + 인용"으로 옮겨가는 중.</p>
+      <p class="t-lead lead-nowrap" style="color:#555;">"증상 → 검색창 → 클릭" 흐름이 "증상 → AI 챗에게 묻기 → 답변 + 인용"으로 옮겨가는 중.</p>
 
       <div class="gateway-diagram">
         <svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -551,9 +556,9 @@
 
   <!-- =================== § 3-B BEFORE vs AFTER (DARK-2) =================== -->
   <section class="tile tile-dark-2">
-    <div class="container-tile">
+    <div class="container-tile-wide">
       <h2 class="ff-display t-display-md mb-3" style="color:#fff;">BEFORE → AFTER</h2>
-      <p class="t-lead" style="color:rgba(255,255,255,0.7);max-width:720px;">기존 운영 사이트(PHP/MySQL)에서 Next.js·Vercel·Supabase 리빌드로 옮긴 결과.</p>
+      <p class="t-lead lead-nowrap" style="color:rgba(255,255,255,0.7);">기존 운영 사이트(PHP/MySQL)에서 Next.js·Vercel·Supabase 리빌드로 옮긴 결과.</p>
 
       <div class="compare-grid mt-12">
         <!-- BEFORE -->
