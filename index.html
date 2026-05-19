@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>설명한의원 · GEO 브리핑 · Private</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Apple SD Gothic Neo", Pretendard, Inter, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #1d1d1f;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      padding: 56px 40px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(41, 151, 255, 0.12);
+      color: #2997ff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.1px;
+      margin-bottom: 32px;
+    }
+    .badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: #2997ff;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin: 0 0 14px 0;
+      line-height: 1.15;
+    }
+    h1 span { color: #2997ff; }
+    p.lead {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0 0 36px 0;
+      line-height: 1.5;
+      letter-spacing: -0.2px;
+    }
+    form { display: flex; flex-direction: column; gap: 14px; }
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 22px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #fff;
+      font-size: 16px;
+      font-family: inherit;
+      letter-spacing: -0.2px;
+      outline: none;
+      transition: border-color 180ms, background 180ms;
+    }
+    input[type="password"]::placeholder { color: rgba(255, 255, 255, 0.35); }
+    input[type="password"]:focus {
+      border-color: #2997ff;
+      background: rgba(41, 151, 255, 0.08);
+    }
+    button {
+      padding: 13px 28px;
+      border-radius: 9999px;
+      background: #0066cc;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 180ms cubic-bezier(.4,0,.2,1), background 180ms;
+      letter-spacing: -0.2px;
+    }
+    button:hover { background: #0071e3; }
+    button:active { transform: scale(0.95); }
+    .err {
+      color: #ff6b6b;
+      font-size: 13px;
+      margin-top: 4px;
+      min-height: 18px;
+      letter-spacing: -0.1px;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: -0.1px;
+      line-height: 1.5;
+    }
+    .footer a { color: rgba(255, 255, 255, 0.55); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+    <div class="badge">
+      <span class="dot"></span>
+      Private · Branch Briefing
+    </div>
+    <h1>설명<span>한의원</span></h1>
+    <p class="lead">AI 검색 시대의 진료 노출 — GEO 적용 보고서.<br>비밀번호를 입력하시면 진입할 수 있습니다.</p>
+    <form onsubmit="check(event)">
+      <input type="password" id="pw" placeholder="비밀번호" autofocus required autocomplete="off">
+      <div class="err" id="err">&nbsp;</div>
+      <button type="submit">입장하기</button>
+    </form>
+    <div class="footer">
+      설명한의원 · AI 검색 최적화 브리핑<br>
+      문의 · <a href="mailto:master@cfind.co.kr">master@cfind.co.kr</a>
+    </div>
+  </div>
+
+  <script>
+    const KEY = '1229';
+    const STORAGE_KEY = 'seolmyung_aio_auth';
+
+    if (sessionStorage.getItem(STORAGE_KEY) === KEY) {
+      window.location.replace('./deck.html');
+    }
+
+    function check(e) {
+      e.preventDefault();
+      const input = document.getElementById('pw');
+      const err = document.getElementById('err');
+      if (input.value === KEY) {
+        sessionStorage.setItem(STORAGE_KEY, KEY);
+        window.location.replace('./deck.html');
+      } else {
+        err.textContent = '비밀번호가 일치하지 않습니다.';
+        input.value = '';
+        input.focus();
+        setTimeout(() => { err.innerHTML = '&nbsp;'; }, 2400);
+      }
+    }
+  </script>
+</body>
+</html>
